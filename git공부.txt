@@ -1,0 +1,52 @@
+Git 공부
+
+Git 은 Working directory 의 파일 정보를 object 형식으로 변환,, 저장
+git 은 데이터를 스냅샷의 스트림처럼 취급
+git 은 데이터를 저장하기 전 항상 체크섬을 구하고 그 체크섬으로 데이터를 관리
+<체크섬>
+- 40자 길이의 문자열
+git 의 데이터베이스에 데이터가 "추가" , 되돌릴 방법 X
+
+1. working directory 에서 파일을 수정 (modified)
+2. staging area 에서 커밋할 스냅샷을 만듬,모든파일or선택추가 (staged)
+3. staging area에 있는 파일을커밋에 git 디렉토리에 영구적인 스냄샷으로 저장 (committed)
+
+git add . => 파일 해시값에 대한 디렉토리 생김
+git commit -m "initial" => 디렉토기 2개 더 생김
+
+<branch>
+처음 작업을 할때는 "master" 브랜치가 선택되어 있음
+checkout 명령어를 통해 브랜치 전환 가능
+<checkout>
+명령어를 실행하면 => 브랜치 안의 마지막 커밋 내용이 작업 트리에 펼쳐짐.
+이후 실행한 커밋은 전환한 브랜치에 추가
+<HEAD>
+현재 사용 중인 브랜치의 선두 부분을 나타내는 이름
+HEAD를 이동하면, 사용하는 브랜치가 변경
+
+<branch 통합>
+작업이 완료된 브랜치는 최종적으로 master 브랜치에 통합.
+
+(1) merge 
+- 여러개의 브랜치를 하나로 모음
+- 분기하는 브랜치가 변경되는 동안 마스터도 변경되었다면 양쪽의 변경을 가져온 병합커밋 실행
+- 변경 내용의 이력이 모두 그대로 남아 있기 때문에 이력이 복잡해짐
+
+(2) rebase
+- 브랜치를 마스터브랜치에 rebase하면, 브랜치의 이력이 마스터브랜치의 뒤로 이동
+- 이력이 하나의 줄기로 이어짐 (A-->B-->C-->)-->(X-->Y)
+                                        마스터브랜치      브랜치
+- 원래의 커밋 이력이 변경됨, 정확한 이력이 남지 않는다.
+
+<object의 종류>
+(1) Blob
+working directory 에 대응하여 내용이 저장되는 object. 파일의 내용만 포함(이름,,형식 X)
+
+(2) Tree
+working directory 에 대응하여 git 에 저장되는 object. 해당 디렉토리 내부의 파일과 디렉토리의 정보
+
+(3) Commit
+commit history 를 저장하는 object 
+author, committer, commit message 를 포함
+
+git config --global user.name "eraserrr"

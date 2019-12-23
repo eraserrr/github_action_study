@@ -1,0 +1,13 @@
+git init
+
+(전역 로그인)
+git config --global user.name ""
+git config --global user.email ""
+
+git add <파일> : 파일 올리기 (.) 
+
+git commit -m "커밋메세지"
+
+git remote add origin 깃허브 주소
+
+git push -u origin master
