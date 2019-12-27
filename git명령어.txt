@@ -1,13 +1,21 @@
 git init
 
-(Àü¿ª ·Î±×ÀÎ)
+#gití´ë¡ 
+git clone "ì£¼ì†Œ"
+
+#gitë¡œê·¸ì¸
+(ì „ì—­ ë¡œê·¸ì¸)
 git config --global user.name ""
 git config --global user.email ""
 
-git add <ÆÄÀÏ> : ÆÄÀÏ ¿Ã¸®±â (.) 
+#git pullí•˜ê¸°
+git pull origin master
 
-git commit -m "Ä¿¹Ô¸Ş¼¼Áö"
+#git pushí•˜ê¸°
+git add <íŒŒì¼> : íŒŒì¼ ì˜¬ë¦¬ê¸° (.) 
 
-git remote add origin ±êÇãºê ÁÖ¼Ò
+git commit -m "ì»¤ë°‹ë©”ì„¸ì§€"
+
+git remote add origin ê¹ƒí—ˆë¸Œ ì£¼ì†Œ
 
 git push -u origin master
