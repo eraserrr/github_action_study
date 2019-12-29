@@ -5,8 +5,20 @@
 최대값을 구하는 문제
 -> 반복문으로 한걸음 한걸음마다 나올 수 있는 상황에서의 최대값을 구해준다.
 arr[0]에서의 최대값 -> arr[1]에서의 최대값 -> arr[2]에서의 최대값
-
 마지막에 나오는 최대값이 답
+
+#피보나치수열 구하
+int fibonacci(int n){
+  if(n==0){
+    print("0")
+    return 0;
+  }else if(n==1){
+    print("1");
+    return 1;
+  }else {
+    return fibonacci(n-1)+fibonacci(n-2);
+  }
+}
 
 #동적계획법으로 접근한 Lis (Longest Increasing Subsequence;최장 증가 부분 수열)
 : 수열이 주어졌을 때, 수가 점점 증가하는 가장 긴 부분 수열을 찾는 문제
