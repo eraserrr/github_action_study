@@ -79,5 +79,5 @@ public int solution(int[] people, int limit) {
 이 코드에서 주의할점은 i==j 가 되는 시퀀스에서는 어차피 남은 개수가 하나일때 경우이므로 처리를 따로 해줘야한다는 것이다. <br>
 
 ### 크루스칼 알고리즘
-[Link:][https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html]
+https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html
 
