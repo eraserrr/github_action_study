@@ -13,7 +13,7 @@
 - 문제에 대한 최종 해결 방법이 부분 문제에 대해서도 또한 최적 문제 해결 방법이라는 조건
 
 ### 프로그래머스 - 구명보트
-{
+```
 public int solution(int[] people, int limit) {
     int answer = 0;
     int[] check = new int[people.length];
@@ -49,12 +49,12 @@ public int solution(int[] people, int limit) {
     return answer;
 
 }
-}
+```
   
 처음 코드였는데 시간초과가 나서 다른 소스코드를 참고해보았다
 내껀 시간복잡도가 O(nlogn) 이다
 소스코드를 바꿔서 돌려보면!?! 뚜둔
-{
+```
 public int solution(int[] people, int limit) {
     int answer = 0;
     Arrays.sort(people); //배열 오름차순 정렬
@@ -74,7 +74,7 @@ public int solution(int[] people, int limit) {
     }
     return answer;
 }
-}
+```
 됐다!!
 이 코드에서 주의할점은 i==j 가 되는 시퀀스에서는 어차피 남은 개수가 하나일때 경우이므로 처리를 따로 해줘야한다는 것이다
 정말 머리가 좋은 사람이 많으것 
