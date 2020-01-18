@@ -51,9 +51,9 @@ public int solution(int[] people, int limit) {
 }
 ```
   
-처음 코드였는데 시간초과가 나서 다른 소스코드를 참고해보았다
-내껀 시간복잡도가 O(nlogn) 이다
-소스코드를 바꿔서 돌려보면!?! 뚜둔
+처음 코드였는데 시간초과가 나서 다른 소스코드를 참고해보았다<br>
+내껀 시간복잡도가 O(nlogn) 이다<br>
+소스코드를 바꿔서 돌려보았다
 ```
 public int solution(int[] people, int limit) {
     int answer = 0;
@@ -78,3 +78,5 @@ public int solution(int[] people, int limit) {
 됐다!!
 이 코드에서 주의할점은 i==j 가 되는 시퀀스에서는 어차피 남은 개수가 하나일때 경우이므로 처리를 따로 해줘야한다는 것이다
 정말 머리가 좋은 사람이 많으것 
+
+### 크루스칼 알고리즘
