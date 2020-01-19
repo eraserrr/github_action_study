@@ -51,8 +51,7 @@ public int solution(int[] people, int limit) {
 }
 ```
   
-처음 코드였는데 시간초과가 나서 다른 소스코드를 참고해보았다<br>
-내껀 시간복잡도가 O(nlogn) 이다<br>
+처음 코드였는데 시간초과가 나서 이거보다 짧게 할 방법이 떠오르지않아서 다른 소스코드를 참고해보았다<br>
 소스코드를 바꿔서 돌려보았다
 ```
 public int solution(int[] people, int limit) {
@@ -75,7 +74,8 @@ public int solution(int[] people, int limit) {
     return answer;
 }
 ```
-됐다!!
+됐다!!<br>
+이렇게하니깐 확실히 시간복잡도가 줄어들 것 같다! 왜이생각을 못했지<br>
 이 코드에서 주의할점은 i==j 가 되는 시퀀스에서는 어차피 남은 개수가 하나일때 경우이므로 처리를 따로 해줘야한다는 것이다. <br>
 
 ### 프로그래머스 선연결하기
