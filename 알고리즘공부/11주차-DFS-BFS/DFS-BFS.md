@@ -1,5 +1,5 @@
 ## DFS/BFS
-![dfs-bfs-example](./image/dfs-bfs-example.gif)
+![example](./image/dfs-bfs-example.gif)
 
 ### DFS (깊이우선탐색)
 루트 노드(혹은 다른 임의의 노드)에서 시작해서 다음분기로 넘어가기 전에 해당 분기를 완벽하게 탐색하는 방법
@@ -34,5 +34,33 @@ void search(Node root) {
 ### BFS (너비우선탐색)
 현재 점점에 연결된 가까운 점들부터 탐색
 
+### BFS의 특징
+- 두 노드사이의 최단 경로 혹은 임의의 경로를 찾고싶을때 이용
+- 어떤 노드를 방문했었는지 반드시 검사
+- 방문한 노드들을 차례로 저장한 후 꺼낼 수 있는 자료구조인 큐를 사용
+
 ### BFS 구현방법
-큐를 이용하여 구현
+- 큐를 이용하여 구현
+
+### BFS qseudocode
+```
+void search(Node root) {
+  Queue queue = new Queue();
+  root.marked = true; // (방문한 노드 체크)
+  queue.enqueue(root); // 1-1. 큐의 끝에 추가
+
+  // 3. 큐가 소진될 때까지 계속한다.
+  while (!queue.isEmpty()) {
+    Node r = queue.dequeue(); // 큐의 앞에서 노드 추출
+    visit(r); // 2-1. 큐에서 추출한 노드 방문
+    // 2-2. 큐에서 꺼낸 노드와 인접한 노드들을 모두 차례로 방문한다.
+    foreach (Node n in r.adjacent) {
+      if (n.marked == false) {
+        n.marked = true; // (방문한 노드 체크)
+        queue.enqueue(n); // 2-3. 큐의 끝에 추가
+      }
+    }
+  }
+}
+https://gmlwjd9405.github.io/2018/08/15/algorithm-bfs.html
+```
