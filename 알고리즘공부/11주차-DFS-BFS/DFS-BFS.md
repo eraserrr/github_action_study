@@ -1,5 +1,5 @@
 ## DFS/BFS
-![dfsbfs][./dfs-bfs-example.gif]
+![dfsbfs][./image/dfs-bfs-example.gif]
 
 ### DFS (깊이우선탐색)
 루트 노드(혹은 다른 임의의 노드)에서 시작해서 다음분기로 넘어가기 전에 해당 분기를 완벽하게 탐색하는 방법
