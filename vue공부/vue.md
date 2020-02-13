@@ -1,6 +1,6 @@
 ## Vue 선언
 - 모든 Vue 앱은 Vue함수로부터 새 Vue 인스턴스를 만드는 것부터 시작
-`
+```
 <div id="app">
   {{ message }}
 </div>
@@ -15,23 +15,23 @@ var app = new Vue({
     }
   }
 })
-`
+```
 - el : new를 이용한 인스턴스 생성때 사용<br>
 vue인스턴스에 마운트할 기존 DOM 엘리먼트 필요..<br>
 ## Vue컴포넌트
 - 미리 정의된 옵션을 가진 Vue 인스턴스, 독립적이고 재사용가능, 트리로 추상화
 - 등록
-`
+```
 Vue.component('todo-item', {
   template: '<li>할일 항목 하나입니다.</li>'
 })
 
 var app = new Vue(...)
 
-`
+```
 => 미리 구상된 데이터만 가지고 렌더링 됨 -> 데이터를 동적으로 가지고오고싶음<br>
 - prop을 전달받을 수 있도록 수정
-`
+```
 <div id="app-7">
   <ol>
     <!--
@@ -61,6 +61,6 @@ var app7 = new Vue({
     ]
   }
 })
-`
+```
 
 
