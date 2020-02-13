@@ -1,4 +1,4 @@
-## Vue 선언
+## Vue 인스턴스 
 - 모든 Vue 앱은 Vue함수로부터 새 Vue 인스턴스를 만드는 것부터 시작
 ```
 <div id="app">
@@ -84,3 +84,49 @@ axios({
     ...
 });
 ```
+```
+<div id="app">
+    <button v-on:click="getData">Request</button>
+    <p>{{message}}</p>
+</div>
+...
+<script>
+    new Vue({
+        el: '#app',
+        methods: {
+            getData: function() {
+                var self = this;
+                axios.get('http://demo9729611.mockable.io')
+                    .then(function(response) {
+                        console.log(response);
+                        console.log(response.data.msg);
+                        self.message += response.data.msg;
+                    }
+                );
+            }
+        },
+        data: {
+            message: 'Empty Message...'
+        }
+    });
+</script>
+```
+## 싱글 파일 컴포넌트 체계
+- 한 html 파일에서 모든 뷰인스턴스와 컴포넌트를 선언할 경우 코드가 복잡하기때문에 이용하게 된 방식이라고 이해를 하였다
+- .vue 파일로 프로젝트 구조를 구성하는 방식<br>
+확장자 .vue 파일 1개는 Vue 어플리케이션을 구성하는 1개의 컴포넌트 단위
+1. 화면에 표시할 요소들을 정의하는 영역 ( HTML + Vue 데이터 바인딩 )
+2. Vue 컴포넌트의 내용을 정의하는 영역 (template,,data,method)
+```
+<script>
+export default {
+    name: "App"
+};
+</script>
+```
+3. 템플릿에 추가한 HTML 태그의 CSS 스타일을 정의하는 영역(style)
+
+## 사용할 라이브러리 간단하게 정리
+- Vue cli : Node js 에서 프로젝트를 생성할때 편하게 구성할 수 있도록 하는 도구
+- Webpack : .vue파일을 웹브라우저가 인식할 수 있게 vue파일의 형태를 변환
+
