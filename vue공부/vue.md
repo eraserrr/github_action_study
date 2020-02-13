@@ -205,7 +205,7 @@ fetchContactOne : function() {
 - 토큰을 만들기 위한 3가지
 1. header : 정보를 암호화할 방식(alg), 타입(type)
 2. payload : 서버에서 보낼 데이터, 일반적으로 유저의 고유 ID값, 유효기간이 들어감
-3. verify signature : base64방식으로 인코딩한 header, payload 에 secret key를 더한 후 서명
+3. verify signature : base64방식으로 인코딩한 header, payload 에 secret key를 더한 후 서명<br>
 => Encoded Header + "." + Encoded Payload + "." + Verify Signature
 - 기본 JWT 방식의 강화버전인 Access token & Refresh token 방식
 - refresh token
@@ -217,4 +217,4 @@ fetchContactOne : function() {
 2. 서버측에서 access token과 refresh token 발급 -> 프론트로 보냄
 3. refresh token 은 db에 저장
 4. 사용자 접속시 refresh token을 먼저 검사--> access token 발급
-
+- 라이브러리 : jsonwebtoken
