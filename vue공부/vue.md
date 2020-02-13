@@ -206,4 +206,15 @@ fetchContactOne : function() {
 1. header : 정보를 암호화할 방식(alg), 타입(type)
 2. payload : 서버에서 보낼 데이터, 일반적으로 유저의 고유 ID값, 유효기간이 들어감
 3. verify signature : base64방식으로 인코딩한 header, payload 에 secret key를 더한 후 서명
-Encoded Header + "." + Encoded Payload + "." + Verify Signature
+=> Encoded Header + "." + Encoded Payload + "." + Verify Signature
+- 기본 JWT 방식의 강화버전인 Access token & Refresh token 방식
+- refresh token
+-> 처음에 로그인을 완료했을 때 access token과 동시에 발급되며, 긴 유효기간을 가지며 access token이 만료됐을때 새로 발급해주는 key 가 됨
+-> access token 의 유효기간을 짧게 설정할 수 있기 때문에 보안성 강화됨
+
+- 동작
+1. 사용자 로그인
+2. 서버측에서 access token과 refresh token 발급 -> 프론트로 보냄
+3. refresh token 은 db에 저장
+4. 사용자 접속시 refresh token을 먼저 검사--> access token 발급
+
