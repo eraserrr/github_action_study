@@ -200,3 +200,10 @@ fetchContactOne : function() {
     })
 },
 ```
+## Vue session 기능
+- 토큰을 이용한 로그인 유지(JWT이용) : 토큰을 http 헤더에 실어 서버로 전송해 인증하는 방식
+- 토큰을 만들기 위한 3가지
+1. header : 정보를 암호화할 방식(alg), 타입(type)
+2. payload : 서버에서 보낼 데이터, 일반적으로 유저의 고유 ID값, 유효기간이 들어감
+3. verify signature : base64방식으로 인코딩한 header, payload 에 secret key를 더한 후 서명
+Encoded Header + "." + Encoded Payload + "." + Verify Signature
