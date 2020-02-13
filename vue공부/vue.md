@@ -129,6 +129,24 @@ export default {
 ## 사용할 라이브러리 간단하게 정리
 - Vue cli : Node js 에서 프로젝트를 생성할때 편하게 구성할 수 있도록 하는 도구<br>사용시 하나의 .vue파일이 하나의 독립적인 컴포넌트를 정의.<br>
 컴포넌트 정의를 별도로 하지않고
-.vue 파일에서 export default{속성} 형식으로 정의
+.vue 파일에서 export default{속성} 형식으로 정의<br>이때 각 속성 안에서 => 함수를 사용하게되면 this를 인식하지 않아 지양(불확실)
 - Webpack : .vue파일을 웹브라우저가 인식할 수 있게 vue파일의 형태를 변환
 
+## http proxy 설정
+Vue CLI가 생성하는 프로젝트 템플릿 코드에서는 약간의 설정 파일만 작성하면 웹팩 개발서버를 이용해 프로시 서버 기능을 사용할 수 있다. 프로젝트 최상위 디렉토리에 vue.config.js파일을 생성하고 아래의 코드를 작성한다.이렇게 하면 개발용 서버에 /api/contacts를 요청하게되면 http://localshot:3000/contacts로 요청일 전달 도니다.  만약 위의 서비스 API 서버를 로컬에서 실행하지 않는다면 위의 target 값을 http://sample.bmaster.kro.kr 으로 지정하면 된다.<br>
+라고 하는데 무슨말인지 잘 모르겠음 ㅜ
+```
+module.exports = {
+    devServer: {
+        proxy: {
+            '/api': {
+                target: 'http://localshot:3000',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
+        }
+    }
+}
+```
