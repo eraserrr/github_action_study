@@ -129,7 +129,7 @@ export default {
 ## 사용할 라이브러리 간단하게 정리
 - Vue cli : Node js 에서 프로젝트를 생성할때 편하게 구성할 수 있도록 하는 도구<br>사용시 하나의 .vue파일이 하나의 독립적인 컴포넌트를 정의.<br>
 컴포넌트 정의를 별도로 하지않고
-.vue 파일에서 export default{속성} 형식으로 정의<br>이때 각 속성 안에서 => 함수를 사용하게되면 this를 인식하지 않아 지양(불확실)
+.vue 파일에서 export default{속성} 형식으로 정의<br>이때 각 속성 안에서 => 함수를 사용해야 this를 인식할 수 있으므로 지향(불확실)
 - Webpack : .vue파일을 웹브라우저가 인식할 수 있게 vue파일의 형태를 변환
 
 ## http proxy 설정
@@ -149,4 +149,54 @@ module.exports = {
         }
     }
 }
+```
+## vue-cli와 axios 이용하여 개발
+```
+<template>
+  <button @click="fetchContacts">1페이지 연락처 조회</button>
+</template>
+<script>
+import axios from 'axios';
+export default {
+    name : "app",
+    data() {
+        return {
+            ...
+        }
+    },
+    methods : {
+        fetchContacts : function() {
+            axios({
+                method: 'GET',
+                url : '/api/contacts',
+                params : {
+                    page : 1,
+                    pagesize : 5
+                }
+            }).then((response) => {
+                console.log(response);
+                this.result = response.data;
+            }).catch((ex)=> {
+                console.log("ERR!!!!! : ", ex)
+            })
+        }
+    }
+}
+</script>
+```
+- 이때 vue 인스턴스 내부에서 axios를 컴포넌트 내 선언없이 이용하기 위해서는 main.js에 아래 내용 추가
+```
+import axios from '.axios'
+
+Vue.prototype.$axios = axios;
+Vue.config.productionTip = false
+```
+이렇게 되면 위의 fetchContactone 를 아래와 같이 변경 가능(this.$axios)
+```
+fetchContactOne : function() {
+    this.$axios.get('/api/contacts/' + this.no)
+    .then((response) => {
+        this.result = response.data
+    })
+},
 ```
