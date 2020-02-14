@@ -218,3 +218,82 @@ fetchContactOne : function() {
 3. refresh token 은 db에 저장
 4. 사용자 접속시 refresh token을 먼저 검사--> access token 발급
 - 라이브러리 : jsonwebtoken
+
+## Promise 동작
+.. 뷰공부 그만하고 싶다
+- 서버에 데이터를 요청하는 코드
+```
+$.get('url 주소/products/1', function (response) {
+  // ...
+});
+```
+- 이때 서버에서 응답받은 요청을 받은 뒤의 동작을 promise로 구현할때는 다음과 같은 소스로 구현을 하게 됨
+```
+function getData(callback) {
+  // new Promise() 추가
+  return new Promise(function (resolve, reject) {
+    $.get('url 주소/products/1', function (response) {
+      // 데이터를 받으면 resolve() 호출
+      resolve(response);
+    });
+  });
+}
+
+// getData()의 실행이 끝나면 호출되는 then()
+getData().then(function (tableData) {
+  // resolve()의 결과 값이 여기로 전달됨
+  console.log(tableData); // $.get()의 reponse 값이 tableData에 전달됨
+});
+```
+- promise의 세 가지 상태
+1. 대기 (pending)
+```
+new Promise(function (resolve, reject) {
+  // ...
+});
+```
+2. 이행 (fulfilled) : 콜백 함수를 resolve
+```
+new Promise(function(resolve, reject) {
+  resolve();
+});
+```
+이행 상태에서는 다음과 같이 then()을 이용한 처리 결과값을 받을 수 있다
+```
+getData().then(function (resolvedData) {
+  console.log(resolvedData); // 100
+});
+```
+3. 실패 (rejected) : reject인자로 reject()메서드 실행시 실패 이유를 catch()로 받을 수 있음
+```
+function getData() {
+  return new Promise(function (resolve, reject) {
+    reject(new Error("Request is failed"));
+  });
+}
+
+// reject()의 결과 값 Error를 err에 받음
+getData().then().catch(function (err) {
+  console.log(err); // Error: Request is failed
+});
+```
+- 예시
+```
+function getData() {
+  return new Promise(function (resolve, reject) {
+    $.get('url 주소/products/1', function (response) {
+      if (response) {
+        resolve(response);
+      }
+      reject(new Error("Request is failed"));
+    });
+  });
+}
+
+// Fulfilled 또는 Rejected의 결과 값 출력
+getData().then(function (data) {
+  console.log(data); // response 값 출력
+}).catch(function (err) {
+  console.error(err); // Error 출력
+});
+```
