@@ -63,7 +63,25 @@ for (Map.Entry m : hashmap.entrySet()) {
 [번호 : 5 국가 : 중국]    <-- entrySet()의 return 값에 대한 변경으로 인해
                                 entrySet() 재실행 시의 값이 변한 것을 확인할 수 있다
 */
-
+```
 ### sort 메소드
 - 배열을 쓸때에는 Arrays.sort
 - list타입을 정렬할 때에는 Collections.sort 를 사용한다.
+
+### Collections.sort 
+1. sort(List<T>)<T>
+2. sort(List<T>),Comparator<? super T>)<T>
+
+=> 따라서 sort함수는 List 타입을 지원해주기때문에 hashmap을 list형태로 바꿔준다<br>
+대충 이런 형태
+```
+List<String> list = new ArrayList();
+list.addAll(map.keySet());
+Collections.sort(list,new Comparator() {
+    public int compare(Object o1,Object o2) {
+        Object v1 = map.get(o1);
+        Object v2 = map.get(o2);
+        return ((Comparable) v2).compareTo(v1);
+    }
+```
+             
