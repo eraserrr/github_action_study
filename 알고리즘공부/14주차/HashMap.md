@@ -75,13 +75,15 @@ for (Map.Entry m : hashmap.entrySet()) {
 => 따라서 sort함수는 List 타입을 지원해주기때문에 hashmap을 list형태로 바꿔준다<br>
 대충 이런 형태
 ```
-List<String> list = new ArrayList();
-list.addAll(map.keySet());
-Collections.sort(list,new Comparator() {
-    public int compare(Object o1,Object o2) {
-        Object v1 = map.get(o1);
-        Object v2 = map.get(o2);
-        return ((Comparable) v2).compareTo(v1);
-    }
+List<Integer> list = new ArrayList<>();
+  list.addAll(failRate.keySet());
+  Collections.sort(list, new Comparator() {
+      public int compare(Object o1, Object o2) {
+          if(failRate.get(o1) > failRate.get(o2))
+              return -1;
+          else
+              return 1;
+      }
+  });
 ```
              
