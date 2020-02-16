@@ -297,3 +297,91 @@ getData().then(function (data) {
   console.error(err); // Error 출력
 });
 ```
+
+### Vuex store
+- 단일 상태 트리라고한다. 이 단일 객체는 모든 애플리케이션 수준의 상태를 포함하며 원본 소스 역할을 함. 각 애플리케이션마다 하나의 저장소만 갖게 된다
+```
+const app = new Vue({
+  el: '#app',
+  // "store" 옵션을 사용하여 저장소를 제공하십시오.
+  // 그러면 모든 하위 컴포넌트에 저장소 인스턴스가 삽입됩니다.
+  store,
+  components: { Counter },
+  template: `
+    <div class="app">
+      <counter></counter>
+    </div>
+  `
+})
+```
+=> this..$store.count 로 접근 가능
+- 상태관리 구성요소
+1. state : 컴포넌트 간에 공유할 data
+2. view : 데이터가 표현될 template
+3. actions : 사용자의 입력에 따라 반응할 methods
+
+- state 등록
+```
+import Vue from "vue";
+import Vuex from "vuex";
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+  // counter라는 state 속성을 추가
+  state: {
+    counter: 0
+  }
+});
+```
+- getters : 함수계산해서 return 할 수 있음<br> $store.getters.함수명 으로 접근
+- mutations : vuex의 데이터, state를 변경하는 로직<br>
+getters와 다른점은 인자를 받아 vuex에 넘겨줄 수 있다는 것이다. 동기적 동작
+```
+export const store = new Vuex.Store({
+  // ...
+  mutations: {
+    addCounter: function (state, payload) {
+      return state.counter++;
+    }
+  }
+});
+```
+- mutations 사용
+```
+methods: {
+  addCounter() {
+    // this.$store.state.counter++;
+    this.$store.commit('addCounter');
+  }
+},
+인자값넘기기 
+this.$store.commit('addCounter',10);
+```
+=> commit을 이용해 mutations 이벤트를 호출한다<br>
+=> 추적가능한 상태 변화를 위해 이렇게 구조화되어있음
+- actions :  mutations와 비슷하지만 비동기적으로 구현됨
+- 선언 (내부적으로 mutations 이용)
+```
+actions: {
+    addCounter: function (context) {
+      // commit 의 대상인 addCounter 는 mutations 의 메서드를 의미한다.
+      return context.commit('addCounter');
+    }
+  }
+```
+- HTTP get 요청이나 setTimeout 과 같은 비동기 처리 로직은 actions에 선언한다
+- 호출
+```
+methods: {
+  // Mutations 를 이용할 때
+  addCounter() {
+    this.$store.commit('addCounter');
+  }
+  // Actions 를 이용할 때
+  addCounter() {
+    this.$store.dispatch('addCounter');
+  }
+},
+```
+
