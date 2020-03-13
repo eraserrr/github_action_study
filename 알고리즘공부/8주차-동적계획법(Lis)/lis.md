@@ -25,7 +25,7 @@ int fibonacci(int n){
 ex) A={10,20,10,30,20,50} 일때 Lis 는 A={"10","20",10,"30",20,"50"}
 
 ### O(n^2) 풀이
-
+```
 int[] array = new int[N];
 int[] dp = new int[N];
 
@@ -43,3 +43,4 @@ for(int i=1;i<N;i++){
     max = dp[i];
   }
 }
+```
