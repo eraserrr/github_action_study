@@ -9,6 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Fetch base branch
+        run: git fetch origin githubactionsmaster
       - name: Get list of changed files
         id: files
         run: |
