@@ -12,7 +12,7 @@ jobs:
       - name: Get list of changed files
         id: files
         run: |
-          echo "::set-output name=files::$(git diff HEAD -name-only origin/${{ github.ref_name }})"
+          echo "::set-output name=files::$(git diff HEAD --name-only origin/${{ github.ref_name }})"
       - name: Check for keywords
         id: check_keywords
         run: |
