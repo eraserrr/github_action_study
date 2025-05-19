@@ -20,7 +20,6 @@ jobs:
       - name: Check for keywords
         id: check_keywords
         run: |
-          echo "${{ steps.files.outputs.files }}" > changed_files.txt
           cat changed_files.txt
           if grep -E 'Main' changed_files.txt; then
             echo "trigger=true" >> $GITHUB_OUTPUT
