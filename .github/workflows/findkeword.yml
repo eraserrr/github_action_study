@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Get list of changed files
+        id: files
+        run: |
+          echo "::set-output name=files::$(git diff --name-only origin/main)"
       - name: Check for keywords
         id: check_keywords
         run: |
