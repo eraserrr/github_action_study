@@ -11,15 +11,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Fetch base branch
+        run: git fetch origin githubactionsmaster:githubactionsmaster
       - name: Set output
+        id: diff
         run: |
-          FILES=$(git diff --name-only githubactionsmaster ${{ github.ref_name }})
+          FILES=$(git diff --name-only origin/githubactionsmaster origin/${{ github.ref_name }})
           echo files=$FILES >> $GITHUB_OUTPUT
       - name: Check for keywords
         id: check_keywords
         run: |
-          echo $GITHUB_OUTPUT
-          echo $GITHUB_OUTPUT > changed_files.txt
+          echo "${{ steps.diff.outputs.files }}"
+          echo "${{ steps.diff.outputs.files }}" > changed_files.txt
           if grep -E 'Main' changed_files.txt; then
             echo "trigger=true" >> $GITHUB_OUTPUT
           else
