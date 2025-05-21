@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "githubactions" ]
 
-
+### 변경된 파일에 특정 키워드가 포함되어있다면 알림을 보낸다.
 jobs:
   build:
     runs-on: ubuntu-latest
