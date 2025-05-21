@@ -1,8 +1,8 @@
 name: KeywordNotification
 
 on:
-  merge:
-    branches: [ "githubactions" ]
+  pull_request:
+    types: [closed]
 
 ### 변경된 파일에 특정 키워드가 포함되어있다면 알림을 보낸다.
 jobs:
