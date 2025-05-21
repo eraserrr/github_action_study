@@ -21,7 +21,7 @@ jobs:
       - name: Set output
         id: diff
         run: |
-          FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }} origin/${{ github.event.pull_request.head.ref }}
+          FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }} origin/${{ github.event.pull_request.head.ref }})
           echo files=$FILES >> $GITHUB_OUTPUT
       - name: Check for keywords
         id: check_keywords
