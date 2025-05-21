@@ -4,20 +4,28 @@ on:
   push:
     branches: [ "githubactions" ]
 
-
+### 변경된 파일에 특정 키워드가 포함되어있다면 알림을 보낸다.
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Get list of changed files
-        id: files
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Fetch base branch
+        run: git fetch origin githubactionsmaster:githubactionsmaster
+      - name: Set output
+        id: diff
         run: |
-          echo "::set-output name=files::$(git diff HEAD --name-only origin/${{ github.ref_name }})"
+          FILES=$(git diff --name-only origin/githubactionsmaster origin/${{ github.ref_name }})
+          echo files=$FILES >> $GITHUB_OUTPUT
       - name: Check for keywords
         id: check_keywords
         run: |
-          echo "${{ steps.files.outputs.files }}" > changed_files.txt
-          if grep -E 'Main' changed_files.txt; then
+          echo "${{ steps.diff.outputs.files }}"
+          echo "${{ steps.diff.outputs.files }}" > changed_files.txt
+          if grep -E 'Entity' changed_files.txt; then
             echo "trigger=true" >> $GITHUB_OUTPUT
           else
             echo "trigger=false" >> $GITHUB_OUTPUT
