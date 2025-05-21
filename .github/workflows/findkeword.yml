@@ -14,11 +14,14 @@ jobs:
         with:
           fetch-depth: 0
       - name: Fetch base branch
-        run: git fetch origin ${{ github.event.pull_request.head.ref }}
+        run: |
+          git fetch origin +refs/heads/${{ github.event.pull_request.base.ref }}:refs/remotes/origin/${{ github.event.pull_request.base.ref }}
+          git fetch origin +refs/heads/${{ github.event.pull_request.head.ref }}:refs/remotes/origin/${{ github.event.pull_request.head.ref }}
+
       - name: Set output
         id: diff
         run: |
-          FILES=$(git diff --name-only origin/${{ github.ref_name }} origin/${{ github.event.pull_request.head.ref }})
+          FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }} origin/${{ github.event.pull_request.head.ref }}
           echo files=$FILES >> $GITHUB_OUTPUT
       - name: Check for keywords
         id: check_keywords
