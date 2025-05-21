@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "${{ steps.diff.outputs.files }}"
           echo "${{ steps.diff.outputs.files }}" > changed_files.txt
-          if grep -E 'Main' changed_files.txt; then
+          if grep -E 'Entity' changed_files.txt; then
             echo "trigger=true" >> $GITHUB_OUTPUT
           else
             echo "trigger=false" >> $GITHUB_OUTPUT
