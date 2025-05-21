@@ -12,7 +12,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Set output
-        run: echo files=git diff --name-only origin/githubactionsmaster origin/${{ github.ref_name }} >> $GITHUB_OUTPUT
+        run: |
+          FILES=$(git diff --name-only origin/githubactionsmaster origin/${{ github.ref_name }})
+          echo files=$FILES >> $GITHUB_OUTPUT
       - name: Check for keywords
         id: check_keywords
         run: |
